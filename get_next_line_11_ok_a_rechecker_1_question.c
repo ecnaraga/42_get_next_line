@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_11.c                                 :+:      :+:    :+:   */
+/*   get_next_line_11_ok_a_rechecker_1_question.        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 18:35:18 by garance           #+#    #+#             */
-/*   Updated: 2023/05/14 17:40:03 by garance          ###   ########.fr       */
+/*   Updated: 2023/05/14 18:09:00 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ char	*ft_new_line(char *line, char *buffer, int i)
  * Valeur de retour :
  * => Retour = NULL : L allocation dynamique a echouee. Si l allocation a echouee
  *					  dans ft_new_line, line est egal a NULL et la fonction
- *					  renverra NULL
+ *					  renverra NULL.
+ *					  Ou fin du fichier : il n y avait rien dans save, donc line
+ *					  est NULL et read a deja lu tout le fd soit count = 0
  *
  * => Retour = ligne : La ligne cree que doit renvoyer get_next_line
  *
@@ -115,18 +117,18 @@ char	*ft_read_fd(char *save, char *line, int fd)
 {
 	char	buffer[BUFFER_SIZE + 1];
 	int		count;
-	char	*temp;
 	int		i;
 
 	count = -1;
 	i = -1;
-	temp = NULL;
 	ft_bzero(save, BUFFER_SIZE + 1);
 	while (i < 0 && count != 0)
 	{
 		ft_bzero(buffer, BUFFER_SIZE + 1);
 		count = read(fd, buffer, BUFFER_SIZE);
 		i = ft_present_char(buffer, '\n');
+		if (!line && count == 0)
+			return (NULL);
 		line = ft_new_line(line, buffer, i);
 		if (!line)
 			return (NULL);

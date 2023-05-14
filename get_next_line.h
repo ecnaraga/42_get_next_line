@@ -6,7 +6,7 @@
 /*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:47:21 by galambey          #+#    #+#             */
-/*   Updated: 2023/05/14 17:33:48 by garance          ###   ########.fr       */
+/*   Updated: 2023/05/14 17:55:11 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 char	*ft_get_next_line(int fd);
 int		ft_present_char(char *buffer, char c);
-char	*ft_new_line(char *save, char *line, char *buffer, int i);
+char	*ft_new_line(char *line, char *buffer, int i);
 char	*ft_read_fd(char *save, char *line, int fd);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
