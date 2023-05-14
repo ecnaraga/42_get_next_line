@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_5.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:17:59 by galambey          #+#    #+#             */
-/*   Updated: 2023/05/12 14:59:37 by galambey         ###   ########.fr       */
+/*   Updated: 2023/05/13 12:18:28 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_read_fd(, char *buffer, int fd)
 
 	i = -1;
 	count = -1;
-	while (i < 0 && count != 0)
+	while (i < 0 && count != 0) // read a chaque relecture ecrase le buffer si on ne l a pas stocke avant
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
 		i = ft_present_char(buffer);

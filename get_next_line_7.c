@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_6.c                                  :+:      :+:    :+:   */
+/*   get_next_line_7.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:17:59 by galambey          #+#    #+#             */
-/*   Updated: 2023/05/13 10:04:16 by garance          ###   ########.fr       */
+/*   Updated: 2023/05/13 14:47:05 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,22 +110,19 @@ char	*ft_new_line(char *sauv, char *line, char *buffer, int i)
 	len = ft_strlen(buffer);
 	if (!buffer && !sauv)
 		return (NULL);
-	if (line)
+	if (sauv) //normalement line a cet endroit toujours nul et sauv ne contient pas de '\n'> a verifier
+	{
+		line = ft_strjoin(sauv, line);
+		ft_bzero(sauv);
+		ft_read_fd(line, buffer, fd);
+	}
+	if (line && buffer)
 	{
 		temp = line;
 		line = ft_strjoin(temp, /*buffer jusqu au i*/);
 		free(temp);
+		ft_strlcat(sauv, buffer + i + 1, len - i); // qd i = -1 que se pasee t il?
 	}
-	else
-		line = calloc(i + 2 + ft_strlen(sauv), sizeof(char)); // +1 x /n et +1 x \0 et ft_strlen(sauv) > si n existe pas ou vide est egal a 0
-	if (!line)
-		return (NULL);
-	if (sauv)
-	{
-		
-	}
-	if (!sauv)
-	
 	return (line);
 }
 
@@ -149,22 +146,22 @@ char	*ft_get_next_line(int fd)
 	buffer = NULL;
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
-	if fd //>>> secu  + 1024 fd max de 0 a 1023
+//if (fd) >>> secu a rajouter  + pour bonus 1024 fd max de 0 a 1023
 	if (!sauv || ft_present_char(sauv, '\n') == -1)
 	{
 		i = ft_read_fd(line, buffer, fd); //>> voir cas ou i = -1
-		ft_new_line(sauv, line, buffer, i);
-		if (line != NULL)
-			return (line);
+		return (ft_new_line(sauv, line, buffer, i));
+//		if (line != NULL)
+//			return (line);
 	}
 	else //	if (sauv && ft_present_char >= 0)
 	{
-/*		buffer = calloc((ft_strlen(sauv) + 1), sizeof(char));
-		free(sauv);
-		ft_new_line(sauv, line, buffer, ft_present_char(buffer, '\n'));
-		free(buffer);
-		if (line != NULL)
-			return (line);
-*/	}
+		ft_strjoin(line, sauv jusqu qu i);
+		if (!line)
+			return (NULL);
+		sauv[0] = '\0';
+		ft_strcat(sauv, sauv + ft_present_char(sauv + i, '\n'));
+		return (line);
+	}
 	return (ft_free_get_next_line(sauv, line));
 }
