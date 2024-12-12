@@ -1,3 +1,5 @@
+# GET_NEXT_LINE 42_SCHOOL_PROJECT
+
 # READ ME
 
 # Goal
