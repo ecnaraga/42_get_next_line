@@ -1,7 +1,5 @@
 # GET_NEXT_LINE 42_SCHOOL_PROJECT
 
-# READ ME
-
 # Goal
   - Create a function to read a file line by line, 1 at a time.
     (the end of a line is marked by an \n or the end of the file is marked by an \0)
